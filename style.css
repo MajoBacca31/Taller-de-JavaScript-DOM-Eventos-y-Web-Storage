@@ -1,3 +1,4 @@
+
 body {
     font-family: sans-serif;
     padding: 20px;
@@ -5,6 +6,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
 #app-container {
     background: white;
     padding: 20px 30px;
@@ -13,21 +15,25 @@ body {
     max-width: 400px;
     width: 100%;
 }
+
 h1 {
     text-align: center;
     color: #333;
 }
+
 div {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 }
+
 #task-input {
     flex-grow: 1;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
 #add-task-btn {
     padding: 10px 15px;
     border: none;
@@ -36,10 +42,12 @@ div {
     border-radius: 4px;
     cursor: pointer;
 }
+
 #task-list {
     list-style: none;
     padding: 0;
 }
+
 .task-item {
     background-color: #f9f9f9;
     padding: 10px;
@@ -49,6 +57,7 @@ div {
     justify-content: space-between;
     align-items: center;
 }
+
 .delete-btn {
     background-color: #dc3545;
     color: white;

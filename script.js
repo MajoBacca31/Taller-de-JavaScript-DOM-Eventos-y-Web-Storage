@@ -1,57 +1,66 @@
 
-const taskInput = document.getElementById('taskInput');
-const addButton = document.getElementById('addButton');
-const taskList = document.getElementById('taskList');
+const taskInput = document.getElementById("taskInput");
+const addTaskBtn = document.getElementById("addTaskBtn");
+const taskList = document.getElementById("taskList");
 
 function createTaskElement(taskText) {
-  const listItem = document.createElement('li');
-  listItem.className = 'task-item';
-  listItem.textContent = taskText;
 
-  const deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Eliminar';
-  deleteButton.className = 'delete-btn';
+  const li = document.createElement("li");
+  li.classList.add("task-item");
 
-  deleteButton.addEventListener('click', () => {
-    listItem.remove();
+  const span = document.createElement("span");
+  span.textContent = taskText;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "Eliminar";
+  deleteBtn.classList.add("delete-btn");
+
+  deleteBtn.addEventListener("click", () => {
+    li.remove();
     saveTasks();
   });
-  
-  listItem.appendChild(deleteButton);
-  return listItem;
+
+  li.appendChild(span);
+  li.appendChild(deleteBtn);
+
+  taskList.appendChild(li);
+
+  saveTasks();
 }
 
+addTaskBtn.addEventListener("click", () => {
+  const text = taskInput.value.trim();
+  if (text !== "") {
+    createTaskElement(text);
+    taskInput.value = "";
+    taskInput.focus();
+  }
+});
+
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    const text = taskInput.value.trim();
+    if (text !== "") {
+      createTaskElement(text);
+      taskInput.value = "";
+    }
+  }
+});
+
 function saveTasks() {
-  const tasks = document.querySelectorAll('.task-item');
-  const tasksArray = [];
-  tasks.forEach(task => {
-    const taskText = task.firstChild.textContent.trim();
-    tasksArray.push(taskText);
+  const tasks = [];
+  document.querySelectorAll(".task-item span").forEach((span) => {
+    tasks.push(span.textContent);
   });
-  localStorage.setItem('tasks', JSON.stringify(tasksArray));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function loadTasks() {
-  const tasksJSON = localStorage.getItem('tasks');
-  if (tasksJSON) {
-    const tasksArray = JSON.parse(tasksJSON);
-    tasksArray.forEach(taskText => {
-      const newTask = createTaskElement(taskText);
-      taskList.appendChild(newTask);
-    });
+  const saved = localStorage.getItem("tasks");
+  if (saved) {
+    const tasks = JSON.parse(saved);
+    tasks.forEach((task) => createTaskElement(task));
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadTasks();
-
-  addButton.addEventListener('click', () => {
-    const taskText = taskInput.value.trim();
-    if (taskText !== '') {
-      const newTask = createTaskElement(taskText);
-      taskList.appendChild(newTask);
-      taskInput.value = '';
-      saveTasks();
-    }
-  });
-});
+loadTasks();

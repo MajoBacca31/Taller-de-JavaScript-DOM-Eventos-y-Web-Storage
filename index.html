@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Lista de Tareas</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tareas</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="app-container">
-        <h1>Mi Lista de Tareas</h1>
-        <div>
-            <input type="text" id="task-input" placeholder="Añadir una nueva tarea...">
-            <button id="add-task-btn">Agregar</button>
-        </div>
-        <ul id="task-list">
-        </ul>
+  <div class="todo-container">
+    <h1>Lista de Tareas</h1>
+    
+    <div class="todo-input">
+      <input type="text" id="taskInput" placeholder="Escribe una nueva tarea...">
+      <button id="addTaskBtn">Agregar</button>
     </div>
 
-    <script src="script.js"></script>
+    <ul id="taskList" class="todo-list">
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
